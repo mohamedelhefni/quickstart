@@ -1,75 +1,23 @@
-require('basic')
-require('color')
-require('telescope')
-require('lsp')
-require('treesitter')
-require('coderunner')
-require('lualine').setup()
-require('gitsigns').setup()
+local impatient_ok, impatient = pcall(require, "impatient")
+if impatient_ok then
+  impatient.enable_profile()
+end
 
-local use = require('packer').use
+vim.opt.rtp:append(vim.fn.stdpath "config" .. "/../astronvim")
 
-require('packer').startup(function()
-  use 'wbthomason/packer.nvim'
+for _, source in ipairs {
+  "core.utils",
+  "core.options",
+  "core.plugins",
+  "core.autocmds",
+  "core.mappings",
+  "core.ui",
+  "configs.which-key-register",
+} do
+  local status_ok, fault = pcall(require, source)
+  if not status_ok then
+    error("Failed to load " .. source .. "\n\n" .. fault)
+  end
+end
 
-  --old
-  use {
-    "blackCauldron7/surround.nvim",
-    config = function()
-      require"surround".setup {mappings_style = "surround"}
-    end
-  }
-
-  use {
-    'iamcco/markdown-preview.nvim',
-    ft = 'markdown',
-    run = 'cd app && yarn install'
-  }
-
-  use 'mattn/emmet-vim'
-
-  -- Code commenter
-  use 'preservim/nerdcommenter'
-
-  -- NERDTree
-  use 'preservim/nerdtree'
-
-
-  -- common
-  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
-  use 'williamboman/nvim-lsp-installer'
-  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'L3MON4D3/LuaSnip'
-
-  use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
-    }
-
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
-
-  
-  use {
-    'lewis6991/gitsigns.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim'
-    }
-  }
-
-  -- themes
-  -- use 'morhetz/gruvbox'
-  use 'sainnhe/gruvbox-material'
-  use {'nvim-lualine/lualine.nvim',
-  requires = {'kyazdani42/nvim-web-devicons', opt = true}}
-
-end)
-
-
+astronvim.conditional_func(astronvim.user_plugin_opts("polish", nil, false))
