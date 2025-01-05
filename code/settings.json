@@ -1,31 +1,25 @@
 {
-    "editor.fontFamily": "'JetBrainsMono Nerd Font','Droid Sans Mono', 'monospace', monospace",
+    "workbench.iconTheme": "vscode-icons",
     "editor.fontSize": 16,
     "editor.fontLigatures": true,
     "keyboard.dispatch": "keyCode",
     "editor.minimap.enabled": false,
     "vim.useSystemClipboard": true,
-    "[javascript]": {
-        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-    },
+    "typescript.tsserver.maxTsServerMemory": 8192,
+    "editor.fontFamily": "'Iosevka Nerd Font','Droid Sans Mono', 'monospace', monospace",
+    "scm.inputFontSize": 18,
+    "terminal.integrated.fontSize": 18,
+    "explorer.compactFolders": false,
     "[vue]": {
         "editor.defaultFormatter": "Vue.volar"
     },
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
+    "emmet.includeLanguages": {
+        "templ": "html"
     },
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "[html]": {
-        "editor.defaultFormatter": "vscode.html-language-features"
-    },
-    "window.zoomLevel": 1,
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "[typescript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "typescript.tsserver.maxTsServerMemory": 8192
+    "terminal.integrated.lineHeight": 1.8,
+    "editor.lineHeight": 32,
+    "gopls": {
+        "ui.semanticTokens": true
+    }
+
 }
